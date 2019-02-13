@@ -49,7 +49,7 @@ public class PostController {
     /*
      * 게시글 상세 정보
      */
-    @GetMapping("/post/{postId}")
+    @GetMapping("/posts/{postId}")
     public ResponseEntity<PostDetailResponse> getPostOne(
             @RequestHeader("appToken") final String appToken,
             @PathVariable("postId") Long postId) throws JsonProcessingException {
@@ -62,7 +62,7 @@ public class PostController {
     /*
      * 게시글 수정
      */
-    @PutMapping("/post/{postId}")
+    @PutMapping("/posts/{postId}")
     public String updatePost(
             @RequestHeader("appToken") final String appToken,
             @PathVariable("postId") Long postId,
@@ -76,7 +76,7 @@ public class PostController {
     /*
      * 게시글 삭제
      */
-    @DeleteMapping("/post/{postId}")
+    @DeleteMapping("/posts/{postId}")
     public String deletePost(
             @RequestHeader("appToken") final String appToken,
             @PathVariable("postId") Long postId) throws IOException {

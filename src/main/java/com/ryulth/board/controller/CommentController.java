@@ -19,7 +19,7 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    @PostMapping("/post/{postId}/comment")
+    @PostMapping("/posts/{postId}/comment")
     public String writeComment(
             @RequestHeader("appToken") final String appToken,
             @RequestBody String payload,
@@ -33,7 +33,7 @@ public class CommentController {
     /*
      * 댓글 상세 정보
      */
-    @GetMapping("/comment/{commentId}")
+    @GetMapping("/comments/{commentId}")
     public ResponseEntity<CommentDetailResponse> getCommentOne(
             @RequestHeader("appToken") final String appToken,
             @PathVariable("commentId") Long commentId) throws JsonProcessingException {
@@ -46,7 +46,7 @@ public class CommentController {
     /*
      * 댓글 수정
      */
-    @PutMapping("/comment/{commentId}")
+    @PutMapping("/comments/{commentId}")
     public String updateComment(
             @RequestHeader("appToken") final String appToken,
             @PathVariable("commentId") Long commentId,
