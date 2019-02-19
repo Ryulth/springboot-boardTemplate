@@ -16,5 +16,5 @@ public interface PostService {
     ResponseEntity<PostDetailResponse> getPostOne(Long postId) throws JsonProcessingException;
     String updatePost(Long postId, String payload) throws IOException;
     String deletePost(Long postId) throws IOException;
-    String writePost(String payload) throws IOException;
+    String writePost(String payload) throws IOException, InterruptedException;
 }

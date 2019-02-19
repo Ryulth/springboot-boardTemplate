@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -78,7 +79,7 @@ public class SimplePostService implements PostService {
     }
 
     @Override
-    public String writePost(String payload) throws IOException {
+    public String writePost(String payload) throws IOException, InterruptedException {
         PostDataRequest postWriteRequest = mapper.readValue(payload, PostDataRequest.class);
         postRepository.save(Post.builder()
                 .authorId(postWriteRequest.getAuthorId())
@@ -87,6 +88,10 @@ public class SimplePostService implements PostService {
                 .title(postWriteRequest.getTitle())
                 .content(postWriteRequest.getContent())
                 .build());
-        return payload;
+
+        Post post = postRepository.findBySemesterCodeAndClassCode(
+                postWriteRequest.getSemesterCode(),
+                postWriteRequest.getClassCode()).get(0);
+        return post.getTimestampDb().toString();
     }
 }

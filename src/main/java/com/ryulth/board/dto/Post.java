@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 
 @Entity
@@ -40,6 +43,10 @@ public class Post {
 
     @Column(name = "updateTime")
     private Calendar updateTime;
+
+
+    @Column(name = "timestampDb", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ")
+    public Timestamp timestampDb;
 
     @Column
     private int hit;

@@ -60,7 +60,7 @@ public class CommentController {
     /*
      * 게시글 삭제
      */
-    @DeleteMapping("/comment/{commentId}")
+    @DeleteMapping("/comments/{commentId}")
     public String deletePost(
             @RequestHeader("appToken") final String appToken,
             @PathVariable("commentId") Long commentId) throws IOException {

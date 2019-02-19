@@ -25,7 +25,7 @@ public class PostController {
     @PostMapping("/post")
     public String writePost(
             @RequestHeader("appToken") final String appToken,
-            @RequestBody String payload) throws IOException {
+            @RequestBody String payload) throws IOException, InterruptedException {
         if (boardToken.equals(appToken)) {
             return postService.writePost(payload);
         }
